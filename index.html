@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: hsl(0, 0%, 90%);
+      }
+      
+      #calculator {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: hsl(0, 0%, 15%);
+        border-radius: 15px;
+        max-width: 480px;
+        overflow: hidden;
+        border: 2px solid hsl(34, 100%, 47%);
+        padding-bottom: 20px;
+      }
+
+      #display {
+        width: calc(100% - 60px);
+        padding: 20px;
+        font-size: 4rem;
+        background-color: hsl(0, 0%, 25%);
+        color: white;
+        text-align: right;
+        border: 5px solid hsl(34, 100%, 47%);
+        margin: 25px auto;
+        display: block;
+        border-radius: 7px;
+        box-sizing: border-box;
+      }
+
+      #keys {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding: 0 25px;
+      }
+
+      button {
+        width: 80px;
+        height: 80px;
+        border: none;
+        border-radius: 50%;
+        background-color: hsl(0, 0%, 30%);
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: hsl(0, 0%, 40%);
+      }
+      
+      button:active {
+        background-color: hsl(0, 0%, 50%);
+      }
+
+      .operator-btn {
+        background-color: hsl(34, 100%, 45%);
+      }
+
+      .operator-btn:hover {
+        background-color: hsl(34, 100%, 55%);
+      }
+
+      #plus {
+        grid-column: span 4;
+        width: 100%;
+        border-radius: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calculator">
+      <input readonly id="display" />
+      <div id="keys">
+        <button onclick="clearDisplay()" class="operator-btn">C</button>
+        <button onclick="appendDisplay('7')">7</button>
+        <button onclick="appendDisplay('8')">8</button>
+        <button onclick="appendDisplay('9')">9</button>
+        <button onclick="appendDisplay('-')" class="operator-btn">-</button>
+        <button onclick="appendDisplay('4')">4</button>
+        <button onclick="appendDisplay('5')">5</button>
+        <button onclick="appendDisplay('6')">6</button>
+        <button onclick="appendDisplay('*')" class="operator-btn">*</button>
+        <button onclick="appendDisplay('1')">1</button>
+        <button onclick="appendDisplay('2')">2</button>
+        <button onclick="appendDisplay('3')">3</button>
+        <button onclick="appendDisplay('/')" class="operator-btn">/</button>
+        <button onclick="appendDisplay('0')">0</button>
+        <button onclick="appendDisplay('.')">.</button>
+        <button onclick="calculate()" class="operator-btn">=</button>
+        <button onclick="appendDisplay('+')" class="operator-btn" id="plus">+</button>
+      </div>
+    </div>
+
+    <script>
+      const display = document.getElementById("display");
+
+      function appendDisplay(input) {
+        display.value += input;
+      }
+
+      function clearDisplay() {
+        display.value = "";
+      }
+
+      function calculate() {
+        try {
+          if (display.value) {
+            display.value = eval(display.value);
+          }
+        } catch (error) {
+          display.value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
