@@ -1,2 +1,2 @@
-# Calculator-Assignment
-JS Assigment  on Calculator
+# calculator-cssignment
+js assignment  on the calculator
